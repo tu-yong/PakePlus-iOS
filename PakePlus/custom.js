@@ -1,26 +1,99 @@
-console.log(
-    '%cbuild from PakePlus： https://github.com/Sjj1024/PakePlus',
-    'color:orangered;font-weight:bolder'
-)
+// core
+const {
+    addPluginListener,
+    invoke,
+    Channel,
+    checkPermissions,
+    convertFileSrc,
+    isTauri,
+    PluginListener,
+    requestPermissions,
+    Resource,
+    transformCallback,
+    SERIALIZE_TO_IPC_FN,
+} = window.__TAURI__.core
 
-// very important, if you don't know what it is, don't touch it
-// 非常重要，不懂代码不要动
-const hookClick = (e) => {
-    const origin = e.target.closest('a')
-    const isBaseTargetBlank = document.querySelector(
-        'head base[target="_blank"]'
-    )
-    console.log('origin', origin, isBaseTargetBlank)
-    if (
-        (origin && origin.href && origin.target === '_blank') ||
-        (origin && origin.href && isBaseTargetBlank)
-    ) {
-        e.preventDefault()
-        console.log('handle origin', origin)
-        location.href = origin.href
-    } else {
-        console.log('not handle origin', origin)
-    }
-}
+// app
+const {
+    defaultWindowIcon,
+    fetchDataStoreIdentifiers,
+    getIdentifier,
+    getName,
+    getTauriVersion,
+    getVersion,
+    hide,
+    removeDataStore,
+    setDockVisibility,
+    setTheme,
+    show,
+} = window.__TAURI__.app
 
-document.addEventListener('click', hookClick, { capture: true })
+// event
+const { emit, emitTo, listen, once } = window.__TAURI__.event
+
+// dpi
+const {
+    LogicalPosition,
+    LogicalSize,
+    PhysicalPosition,
+    PhysicalSize,
+    Position,
+    Size,
+} = window.__TAURI__.dpi
+
+// image
+const { Image, transformImage } = window.__TAURI__.image
+
+// menu
+const {
+    CheckMenuItem,
+    IconMenuItem,
+    itemFromKind,
+    Menu,
+    MenuItem,
+    NativeIcon,
+    PredefinedMenuItem,
+    Submenu,
+} = window.__TAURI__.menu
+
+// path
+const {
+    appDataDir,
+    appConfigDir,
+    appLocalDataDir,
+    appCacheDir,
+    appLogDir,
+    audioDir,
+    cacheDir,
+    configDir,
+    dataDir,
+    desktopDir,
+    documentDir,
+    downloadDir,
+    executableDir,
+    fontDir,
+    homeDir,
+    pictureDir,
+    publicDir,
+    resourceDir,
+    runtimeDir,
+    templateDir,
+    videoDir,
+    sep,
+    delimiter,
+    basename,
+    dirname,
+    extname,
+    join,
+    normalize,
+    resolve,
+    isAbsolute,
+    localDataDir,
+    resolveResource,
+    tempDir,
+} = window.__TAURI__.path
+
+// 调用新建窗口等函数
+const { WebviewWindow } = window.__TAURI__.webviewWindow
+
+// 等等接口，请参考Tauri2官方文档：https://v2.tauri.app/reference/javascript/api/#vanilla-js-api
